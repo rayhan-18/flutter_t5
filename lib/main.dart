@@ -5,7 +5,7 @@ void main() {
 }
 
 class MainApp extends StatelessWidget {
-   MainApp({super.key});
+  MainApp({super.key});
   
   final String userName = 'Muhamad Rayhan';
   final String role = 'Junior Front End Developer';
@@ -70,7 +70,7 @@ class MainApp extends StatelessWidget {
                 label: const Text('Edit Profil'),
               ),
               const SizedBox(height: 24),
-              
+
             ]
           )
         )
