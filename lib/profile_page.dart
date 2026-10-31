@@ -10,6 +10,8 @@ class ProfilePage extends StatelessWidget {
   final List<String> experiences = [
     'Junior Kost Gacor',
     'Solo Project E-Commerce',
+    'Personal Portfolio Website',
+    'Website Company Profile',
   ];
 
   @override
@@ -98,16 +100,12 @@ class ProfilePage extends StatelessWidget {
               child: ListView.builder(
                 itemCount: experiences.length,
                 itemBuilder: (context, index) {
-                  return Card(
-                    elevation: 2,
-                    margin: const EdgeInsets.symmetric(vertical: 6),
-                    child: ListTile(
-                      leading: const Icon(
-                        Icons.work,
-                        color: Colors.blueAccent,
-                      ),
-                      title: Text(experiences[index]),
+                  return ListTile(
+                    leading: const Icon(
+                      Icons.work,
+                      color: Colors.blueAccent,
                     ),
+                    title: Text(experiences[index]),
                   );
                 },
               ),
