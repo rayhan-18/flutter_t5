@@ -11,6 +11,7 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   String userName = 'Muhamad Rayhan';
   final String role = 'Junior Front End Developer';
+  final TextEditingController nameController = TextEditingController();
 
   final List<String> experiences = [
     'Junior Kost Gacor',
@@ -18,6 +19,57 @@ class _ProfilePageState extends State<ProfilePage> {
     'Personal Portfolio Website',
     'Website Company Profile',
   ];
+
+  void editProfile() {
+  nameController.text = userName;
+
+  showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: const Text('Edit Profil'),
+        content: TextFormField(
+          controller: nameController,
+          decoration: const InputDecoration(
+            labelText: 'Nama Lengkap',
+            border: OutlineInputBorder(),
+            prefixIcon: Icon(Icons.person),
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text('Batal'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              final newName = nameController.text.trim();
+
+              if (newName.isEmpty) {
+                return;
+              }
+
+              setState(() {
+                userName = newName;
+              });
+
+              Navigator.pop(context);
+            },
+            child: const Text('Simpan'),
+          ),
+        ],
+      );
+    },
+  );
+}
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,15 +121,7 @@ class _ProfilePageState extends State<ProfilePage> {
             const SizedBox(height: 24),
 
             ElevatedButton.icon(
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text(
-                      'Fitur edit belum aktif pada modul statis.',
-                    ),
-                  ),
-                );
-              },
+              onPressed: editProfile,
               icon: const Icon(Icons.edit),
               label: const Text('Edit Profil'),
             ),
